@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int dfs(int s,vector <int> graph[],int nodes,bool visited[])
+{
+	int c;
+	printf("%d ",s);
+	visited[s]=true;
+	for(int i=0;i<graph[s].size();i++)
+	{
+		c = graph[s].at(i);
+		if(visited[c]==false)
+		{
+			visited[c]=true;
+			dfs(c, graph, nodes,visited);
+		}
+	}
+}
+
+int bfs(int s,vector <int> graph[],int nodes,bool visited[])
+{
+	queue <int> tovisit;
+	tovisit.push(s);
+	while(!tovisit.empty())
+	{
+		if(visited[tovisit.front()]==false)
+		{
+			visited[tovisit.front()]=true;
+			for(int i=0;i<graph[tovisit.front()].size();i++)
+				tovisit.push(graph[tovisit.front()].at(i));
+			printf("%d ",tovisit.front());
+			tovisit.pop();
+		}
+		else
+			tovisit.pop();
+	}
+}
+
+int main()
+{	
+	
+	int nodes,edges,m,temp;
+	scanf("%d %d",&nodes, &edges);
+	vector <int> graph[nodes+1];
+	vector <int>::iterator it;
+	
+	bool visited[nodes+1];
+	memset(visited,false,sizeof(bool)*(nodes+1));
+	
+	
+	int x,y;
+	for(int i=1;i<=edges;i++)
+	{
+		scanf("%d %d",&x,&y);
+		graph[x].push_back(y);	
+		graph[y].push_back(x);
+	}
+	
+	dfs(1,graph,nodes+1,visited);
+	
+	return 0;	
+}
