@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int dfs(int s,vector <int> graph[],int nodes,bool visited[])
+void dfs(int s,vector <int> graph[],int nodes,bool visited[])
 {
 	int c;
 	printf("%d ",s);
@@ -18,7 +18,7 @@ int dfs(int s,vector <int> graph[],int nodes,bool visited[])
 	}
 }
 
-int bfs(int s,vector <int> graph[],int nodes,bool visited[])
+void bfs(int s,vector <int> graph[],int nodes,bool visited[])
 {
 	queue <int> tovisit;
 	tovisit.push(s);
